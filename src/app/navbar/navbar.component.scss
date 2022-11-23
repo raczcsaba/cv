@@ -1,0 +1,21 @@
+.nav{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  background-color: #3B77BC;
+}
+.startmenu:hover{
+  background: url("../../assets/img/startactive.png");
+}
+.startmenu{
+  background: url("../../assets/img/startnormal.png");
+  width: 182px;
+  height: 61px;
+  border: #3B77BC 0px;
+}
+.startmenutoggled{
+  background: url("../../assets/img/startclick.png");
+  width: 182px;
+  height: 61px;
+  border: #3B77BC 0px;
+}
