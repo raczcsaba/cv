@@ -34,3 +34,25 @@
   width: 24px;
   height: 24px;
 }
+#keret {
+  box-sizing: border-box;
+  height: 100%;
+  background-color: #FFFFFF;
+  border: 1px solid transparent;
+  padding: 45px 11px;
+  border-image-source: url("../assets/img/lecci.png");
+  border-image-slice: 120;
+  border-image-width: 100px;
+  border-image-repeat: round;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-content: stretch;
+}
+
+.nav{
+  margin-bottom: 0;
+
+}
