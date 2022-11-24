@@ -1,14 +1,15 @@
-<div class="example-boundary">
+<div class="example-boundary" #desktop>
   <div class="example-box rectangle"
        cdkDragBoundary=".example-boundary"
        cdkDrag
        mwlResizable
-       [style.height]="kocka.height+'px'"
-       [style.width]="kocka.width+'px'"
-       [style.top]="kocka.top+'px'"
-       [style.bottom]="kocka.bottom+'px'"
-       [style.left]="kocka.left+'px'"
-       [style.right]="kocka.right+'px'"
+       [ngClass]="fullToggle?'notrans':''"
+       [style.height]="!fullToggle?kocka.height+'px':desktop.offsetHeight+'px'"
+       [style.width]="!fullToggle?kocka.width+'px':desktop.offsetWidth+'px'"
+       [style.top]="!fullToggle?kocka.top+'px':'12px'"
+       [style.bottom]="!fullToggle?kocka.bottom+'px':'12px'"
+       [style.left]="!fullToggle?kocka.left+'px':'12px'"
+       [style.right]="!fullToggle?kocka.right+'px':'73px'"
        [enableGhostResize]="true"
        (resizeEnd)="onResizeEnd($event)"
        #rect>
@@ -34,7 +35,7 @@
     ></div>
     <div class="example-handle" cdkDragHandle>
       <button class="navbutt min"></button>
-      <button class="navbutt max"></button>
+      <button (click)="fullScreen()" class="navbutt max"></button>
       <button class="navbutt close"></button>
     </div>
   </div>
