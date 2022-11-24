@@ -109,5 +109,7 @@
       }
     }
   },
-  "defaultProject": "cv"
+  "cli": {
+    "analytics": "0c2890b8-d628-48b0-8cc8-82cd4f9e2681"
+  }
 }
