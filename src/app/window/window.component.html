@@ -1,12 +1,41 @@
 <div class="example-boundary">
-  <div class="example-box"
+  <div class="example-box rectangle"
        cdkDragBoundary=".example-boundary"
-       cdkDrag>
+       cdkDrag
+       mwlResizable
+       [style.height]="kocka.height+'px'"
+       [style.width]="kocka.width+'px'"
+       [style.top]="kocka.top+'px'"
+       [style.bottom]="kocka.bottom+'px'"
+       [style.left]="kocka.left+'px'"
+       [style.right]="kocka.right+'px'"
+       [enableGhostResize]="true"
+       (resizeEnd)="onResizeEnd($event)"
+       #rect>
+    <div
+      class="resize-handle-top"
+      mwlResizeHandle
+      [resizeEdges]="{ top: true }"
+    ></div>
+    <div
+      class="resize-handle-left"
+      mwlResizeHandle
+      [resizeEdges]="{ left: true }"
+    ></div>
+    <div
+      class="resize-handle-right"
+      mwlResizeHandle
+      [resizeEdges]="{ right: true }"
+    ></div>
+    <div
+      class="resize-handle-bottom"
+      mwlResizeHandle
+      [resizeEdges]="{ bottom: true }"
+    ></div>
     <div class="example-handle" cdkDragHandle>
       <button class="navbutt min"></button>
       <button class="navbutt max"></button>
       <button class="navbutt close"></button>
-
     </div>
   </div>
 </div>

@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import { NavbarComponent } from './navbar/navbar.component';
 import { WindowComponent } from './window/window.component';
+import {ResizableModule} from "angular-resizable-element";
 
 @NgModule({
   declarations: [
@@ -14,12 +15,13 @@ import { WindowComponent } from './window/window.component';
     NavbarComponent,
     WindowComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        DragDropModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    DragDropModule,
+    ResizableModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
