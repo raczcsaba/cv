@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  background-color: #3B77BC;
+  background-image: url("../../assets/img/startmenu.jpg");
 }
 .startmenu:hover{
   background: url("../../assets/img/startactive.png");
@@ -23,3 +23,19 @@
   position: fixed;
   bottom: 107px;
 }
+.startlight{
+  width: 20%;
+  background-image: url("../../assets/img/startmenulight.jpg");
+  margin-left: auto;
+  border-left: black 1px solid;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+
+}
+.time{
+
+}
+
