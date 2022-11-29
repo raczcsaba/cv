@@ -1,0 +1,46 @@
+<div class="example-box rectangle"
+     cdkDragBoundary=".example-boundary"
+     cdkDrag
+     mwlResizable
+     [ngClass]="fullToggle?'notrans':''"
+     [style.height]="!fullToggle?kocka.height+'px':desktop.offsetHeight+'px'"
+     [style.width]="!fullToggle?kocka.width+'px':desktop.offsetWidth+'px'"
+     [style.top]="!fullToggle?kocka.top+'px':'12px'"
+     [style.bottom]="!fullToggle?kocka.bottom+'px':'12px'"
+     [style.left]="!fullToggle?kocka.left+'px':'12px'"
+     [style.right]="!fullToggle?kocka.right+'px':'73px'"
+     [enableGhostResize]="true"
+     (resizeEnd)="onResizeEnd($event)"
+     #rect>
+  <div
+    class="resize-handle-top"
+    mwlResizeHandle
+    [resizeEdges]="{ top: true }"
+  ></div>
+  <div
+    class="resize-handle-left"
+    mwlResizeHandle
+    [resizeEdges]="{ left: true }"
+  ></div>
+  <div
+    class="resize-handle-right"
+    mwlResizeHandle
+    [resizeEdges]="{ right: true }"
+  ></div>
+  <div
+    class="resize-handle-bottom"
+    mwlResizeHandle
+    [resizeEdges]="{ bottom: true }"
+  ></div>
+  <div class="example-handle" cdkDragHandle>
+    <div class="title">
+      <img class="navbutt" src="../../assets/img/ieicon.ico"/>
+      <p>Web browser</p>
+    </div>
+    <div>
+      <button (click)="tray()" class="navbutt min"></button>
+      <button (click)="fullScreen()" class="navbutt max"></button>
+      <button (click)="close()" class="navbutt close"></button>
+    </div>
+  </div>
+</div>

@@ -8,12 +8,14 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
 import { NavbarComponent } from './navbar/navbar.component';
 import { WindowComponent } from './window/window.component';
 import {ResizableModule} from "angular-resizable-element";
+import { InternetComponent } from './internet/internet.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    WindowComponent
+    WindowComponent,
+    InternetComponent
   ],
   imports: [
     BrowserModule,

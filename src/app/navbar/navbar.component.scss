@@ -38,4 +38,25 @@
 .time{
 
 }
+.app{
+  display: flex;
+  padding: 0px 12px;
+  margin: 4px;
+  margin-top: 7px;
+  border-radius: 5px;
+  color: #cccccc;
+  border: #cccccc 0px;
 
+}
+.ontray{
+  background-color: rgba(0, 24, 215, 0.29);
+}
+.opened{
+  background-color: rgba(0, 195, 255, 0.29);
+}
+.ontray:hover{
+  background-color: rgba(0, 24, 215, 0.4);
+}
+.opened:hover{
+  background-color: rgba(0, 195, 255, 0.4);
+}
