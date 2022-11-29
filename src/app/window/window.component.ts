@@ -16,4 +16,16 @@ export class WindowComponent implements OnInit {
   ngOnInit(): void {
 
   }
+
+
+  single(){
+
+  }
+  double(){
+    this.dataService.data.internet.closed = false
+    this.dataService.data.internet.tray = false
+
+    this.dataService.changeMessage(this.dataService.data)
+    console.log("double")
+  }
 }

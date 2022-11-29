@@ -3,14 +3,15 @@
      cdkDrag
      mwlResizable
      [ngClass]="fullToggle?'notrans':''"
-     [style.height]="!fullToggle?kocka.height+'px':desktop.offsetHeight+'px'"
-     [style.width]="!fullToggle?kocka.width+'px':desktop.offsetWidth+'px'"
+     [style.height]="!fullToggle?kocka.height+'px':height+'px'"
+     [style.width]="!fullToggle?kocka.width+'px':width+'px'"
      [style.top]="!fullToggle?kocka.top+'px':'12px'"
      [style.bottom]="!fullToggle?kocka.bottom+'px':'12px'"
      [style.left]="!fullToggle?kocka.left+'px':'12px'"
      [style.right]="!fullToggle?kocka.right+'px':'73px'"
      [enableGhostResize]="true"
      (resizeEnd)="onResizeEnd($event)"
+     [validateResize]="validate.bind(this)"
      #rect>
   <div
     class="resize-handle-top"

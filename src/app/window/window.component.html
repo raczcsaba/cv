@@ -1,3 +1,12 @@
 <div class="example-boundary" #desktop>
-  <app-internet *ngIf="!dataService.data.internet.closed" [ngClass]="dataService.data.internet.tray?'hide':''" [desktop]="desktop"></app-internet>
+  <button (dblclick)="double()" class="example-box" cdkDragBoundary=".example-boundary" cdkDrag>
+    <img src="../../assets/img/ieicon.ico"/>
+    <p class="icontext">Internet</p>
+  </button>
+  <app-internet
+    *ngIf="!dataService.data.internet.closed"
+    [ngClass]="dataService.data.internet.tray?'hide':''"
+    [height]="desktop.offsetHeight"
+    [width]="desktop.offsetWidth">
+  </app-internet>
 </div>
