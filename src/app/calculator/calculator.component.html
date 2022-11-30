@@ -4,7 +4,8 @@
      cdkDrag
      mwlResizable
      [ngClass]="fullToggle?'notrans':''"
-     [ngClass]="dataService.focus==1?'focus':''"
+     [ngClass]="dataService.focus==3?'focus':''"
+
      [style.height]="!fullToggle?kocka.height+'px':height+'px'"
      [style.width]="!fullToggle?kocka.width+'px':width+'px'"
      [style.top]="!fullToggle?kocka.top+'px':'12px'"
@@ -37,8 +38,8 @@
   ></div>
   <div class="example-handle" cdkDragHandle>
     <div class="title">
-      <img class="navbutt" src="../../assets/img/ieicon.ico"/>
-      <p>Web browser</p>
+      <img class="navbutt" src="../../assets/img/calc.png"/>
+      <p>Calculator</p>
     </div>
     <div>
       <button (click)="tray()" class="navbutt min"></button>

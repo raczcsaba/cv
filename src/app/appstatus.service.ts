@@ -8,7 +8,10 @@ import {BehaviorSubject} from "rxjs";
 export class AppstatusService {
 
   constructor() { }
-  data:AppstatusInterface = {internet:{closed:false, tray:true},folder:{closed:true, tray:false},calculator:{closed:true, tray:false},notepad:{closed:true, tray:false}}
+  data:AppstatusInterface = {internet:{closed:false, tray:true},folder:{closed:false, tray:true},calculator:{closed:false, tray:true},notepad:{closed:false, tray:true}}
+
+  //1-ie 2-filemanager 3-calc 4-notepad
+  focus = 0
 
   //datasending
   private messageSource = new BehaviorSubject(this.data);

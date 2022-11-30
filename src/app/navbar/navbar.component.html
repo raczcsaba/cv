@@ -1,8 +1,25 @@
 <img *ngIf="toggleStart" class="start" src="../../assets/img/startmenu.png">
-<div class="nav">
+<div #nav (window:resize)="onResize(nav.offsetWidth)" class="nav">
   <button (click)="starToggle()" #start [ngClass]="toggleStart?'startmenutoggled':'startmenu'"></button>
-  <button *ngIf="!data.internet.closed" (click)="toggleTray()" class="app" [ngClass]="data.internet.tray?'opened':'ontray'">
-    <p>Internet Explorer</p>
+  <button *ngIf="!data.internet.closed && page == 1" (click)="toggleTrayIe()" class="app" [ngClass]="data.internet.tray?'opened':'ontray'">
+    <img class="navkep" src="../../assets/img/ieicon.ico"/>
+    <p class="navtext">Internet Explorer</p>
   </button>
+  <button *ngIf="!data.folder.closed && (maxShow < 2 ? page == 2 : page == 1)" (click)="toggleTrayFile()" class="app" [ngClass]="data.folder.tray?'opened':'ontray'">
+    <img class="navkep" src="../../assets/img/mapap.png"/>
+    <p class="navtext">File Manager</p>
+  </button>
+  <button *ngIf="!data.calculator.closed && (maxShow < 2 ? page == 3 : maxShow < 3 ? page == 2 : page == 1)" (click)="toggleTrayCalc()" class="app" [ngClass]="data.calculator.tray?'opened':'ontray'">
+    <img class="navkep" src="../../assets/img/calc.png"/>
+    <p class="navtext">Calculator</p>
+  </button>
+  <button *ngIf="!data.notepad.closed && (maxShow < 2 ? page == 4 : maxShow < 3 ? page == 2 : maxShow < 4 ? page == 2 : page == 1)" (click)="toggleTrayNote()" class="app" [ngClass]="data.notepad.tray?'opened':'ontray'">
+    <img class="navkep" src="../../assets/img/note.png"/>
+    <p class="navtext">NotePad</p>
+  </button>
+  <div class="navnavigator">
+    <button (click)="pageUp()" class="up navbut"><mat-icon>keyboard_arrow_up</mat-icon></button>
+    <button (click)="pageDown()" class="down navbut"><mat-icon>keyboard_arrow_down</mat-icon></button>
+  </div>
   <div class="startlight"><div class="time">{{now.toLocaleString('en-US', { hour: 'numeric', minute: "numeric" ,hour12: true })}}</div></div>
 </div>

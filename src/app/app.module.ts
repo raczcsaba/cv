@@ -9,21 +9,29 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { WindowComponent } from './window/window.component';
 import {ResizableModule} from "angular-resizable-element";
 import { InternetComponent } from './internet/internet.component';
+import { FolderComponent } from './folder/folder.component';
+import { CalculatorComponent } from './calculator/calculator.component';
+import { NotepadComponent } from './notepad/notepad.component';
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     WindowComponent,
-    InternetComponent
+    InternetComponent,
+    FolderComponent,
+    CalculatorComponent,
+    NotepadComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    DragDropModule,
-    ResizableModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        DragDropModule,
+        ResizableModule,
+        MatIconModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,7 +1,19 @@
 <div class="example-boundary" #desktop>
-  <button (dblclick)="double()" class="example-box" cdkDragBoundary=".example-boundary" cdkDrag>
+  <button (dblclick)="double(1)" class="example-box" cdkDragBoundary=".example-boundary" cdkDrag>
     <img src="../../assets/img/ieicon.ico"/>
     <p class="icontext">Internet</p>
+  </button>
+  <button (dblclick)="double(2)" class="example-box" style="top: 76px" cdkDragBoundary=".example-boundary" cdkDrag>
+    <img src="../../assets/img/mapap.png"/>
+    <p class="icontext">File Manager</p>
+  </button>
+  <button (dblclick)="double(3)" class="example-box" style="top: 152px" cdkDragBoundary=".example-boundary" cdkDrag>
+    <img src="../../assets/img/calc.png"/>
+    <p class="icontext">Calculator</p>
+  </button>
+  <button (dblclick)="double(4)" class="example-box" style="top: 228px" cdkDragBoundary=".example-boundary" cdkDrag>
+    <img src="../../assets/img/note.png"/>
+    <p class="icontext">NotePad</p>
   </button>
   <app-internet
     *ngIf="!dataService.data.internet.closed"
@@ -9,4 +21,23 @@
     [height]="desktop.offsetHeight"
     [width]="desktop.offsetWidth">
   </app-internet>
+  <app-folder
+    *ngIf="!dataService.data.folder.closed"
+    [ngClass]="dataService.data.folder.tray?'hide':''"
+    [height]="desktop.offsetHeight"
+    [width]="desktop.offsetWidth">
+  </app-folder>
+  <app-calculator
+    *ngIf="!dataService.data.calculator.closed"
+    [ngClass]="dataService.data.calculator.tray?'hide':''"
+    [height]="desktop.offsetHeight"
+    [width]="desktop.offsetWidth">
+  </app-calculator>
+  <app-notepad
+    *ngIf="!dataService.data.notepad.closed"
+    [ngClass]="dataService.data.notepad.tray?'hide':''"
+    [height]="desktop.offsetHeight"
+    [width]="desktop.offsetWidth">
+  </app-notepad>
+
 </div>

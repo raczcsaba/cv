@@ -1,13 +1,13 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {AppstatusService} from "../appstatus.service";
 import {ResizeEvent} from "angular-resizable-element";
 
 @Component({
-  selector: 'app-internet',
-  templateUrl: './internet.component.html',
-  styleUrls: ['./internet.component.scss']
+  selector: 'app-calculator',
+  templateUrl: './calculator.component.html',
+  styleUrls: ['./calculator.component.scss']
 })
-export class InternetComponent {
+export class CalculatorComponent {
   constructor(public dataService : AppstatusService,) {
   }
 
@@ -32,29 +32,29 @@ export class InternetComponent {
   }
 
   tray() {
-    this.dataService.data.internet.tray = true;
+    this.dataService.data.calculator.tray = true;
     this.dataService.changeMessage(this.dataService.data)
   }
 
   close() {
-    this.dataService.data.internet.closed = true;
+    this.dataService.data.calculator.closed = true;
     this.dataService.changeMessage(this.dataService.data)
   }
 
   validate(event: ResizeEvent): boolean {
     //border
-      //transform coords
+    //transform coords
     let transx
     transx = Number(getComputedStyle(this.rect?.nativeElement).transform.split(',')[4]??0)
     let transy
     transy = getComputedStyle(this.rect?.nativeElement).transform.split(',')[5]
     transy = transy?Number(transy.slice(0,-1)):0
 
-      //nullish check
+    //nullish check
     this.width = this.width??0
     this.height = this.height??0
 
-      //sides maximális méretprobléma
+    //sides maximális méretprobléma
     if (transx + event.rectangle.right - 13 > this.width){
       return false
     }
@@ -84,6 +84,6 @@ export class InternetComponent {
   focus() {
     console.log(this.dataService.focus)
 
-    this.dataService.focus = 1
+    this.dataService.focus = 3
   }
 }
