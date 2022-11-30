@@ -24,6 +24,9 @@ export class NavbarComponent implements OnInit {
 
   maxShow = 4
   page = 1
+  activeApp:string[] = []
+  showApp:string[] = []
+  arrowVisible = false
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -32,6 +35,13 @@ export class NavbarComponent implements OnInit {
 
     this.dataService.currentMessage.subscribe(value => {
       this.data = value
+      this.activeApp = [];
+      if (!value.internet.closed) this.activeApp.push('internet');
+      if (!value.folder.closed) this.activeApp.push('folder');
+      if (!value.calculator.closed) this.activeApp.push('calc');
+      if (!value.notepad.closed) this.activeApp.push('notepad');
+      this.filterApps()
+
     })
   }
 
@@ -54,16 +64,17 @@ export class NavbarComponent implements OnInit {
   }
   toggleTrayCalc() {
     this.dataService.focus = 3
-    this.data.internet.tray = !this.data.internet.tray
+    this.data.calculator.tray = !this.data.calculator.tray
     this.dataService.changeMessage(this.data)
   }
   toggleTrayNote() {
     this.dataService.focus = 4
-    this.data.folder.tray = !this.data.folder.tray
+    this.data.notepad.tray = !this.data.notepad.tray
     this.dataService.changeMessage(this.data)
   }
 
   onResize(width: number) {
+    this.arrowVisible = true
     if (width<631){
       this.maxShow = 1;
     }
@@ -75,14 +86,53 @@ export class NavbarComponent implements OnInit {
     }
     else {
       this.maxShow = 4
+      this.arrowVisible = false
     }
+    this.filterApps()
+
 
   }
 
   pageUp() {
-    this.page<4?this.page++:this.page=1
+    this.page<(this.activeApp.length/this.maxShow)?this.page++:this.page=1
+    this.filterApps()
   }
   pageDown() {
     this.page>1?this.page--:this.page=4
+    this.filterApps()
+  }
+  filterApps(){
+    if (this.maxShow>=this.activeApp.length){
+      this.arrowVisible = false
+    }
+    if (this.page == 1){
+      this.showApp = []
+      for (let i = 0; i < (this.maxShow<this.activeApp.length?this.maxShow:this.activeApp.length);i++){
+        this.showApp.push(this.activeApp[i])
+      }
+    }
+    else if (this.page == 2){
+      this.showApp = []
+      let l = this.maxShow*2>this.activeApp.length?this.activeApp.length:this.maxShow*2;
+      console.log(l)
+      for (let i = this.maxShow; i < l; i++){
+        this.showApp.push(this.activeApp[i])
+      }
+    }
+    else if (this.page == 3){
+      this.showApp = []
+      this.showApp.push(this.activeApp[2])
+
+    }
+    else {
+      this.showApp = []
+      this.showApp.push(this.activeApp[3])
+    }
+    console.log(this.showApp)
+    if (this.showApp.length == 0){
+      console.log("történik nyugi")
+      this.page--;
+      this.filterApps()
+    }
   }
 }
