@@ -4,11 +4,11 @@
   width: 100%;
   background-image: url("../../assets/img/startmenu.jpg");
 }
-.startmenu:hover{
-  background: url("../../assets/img/startactive.png");
-}
 .hide{
   display: none;
+}
+.startmenu:hover{
+  background: url("../../assets/img/startactive.png");
 }
 .startmenu{
   background: url("../../assets/img/startnormal.png");
@@ -94,7 +94,7 @@
   flex-flow: column;
   flex-wrap: nowrap;
 }
-@media only screen and (max-width: 469px)  {
+@media only screen and (max-width: 497px)  {
   .app{
     width: 70px;
     overflow: hidden;
@@ -103,4 +103,28 @@
   .navtext{
     display: none;
   }
+}
+@media only screen and (max-width: 708px)  {
+  .startlight{
+    width: 15%;
+  }
+  .startmenu:hover{
+    background: url("../../assets/img/startsmactive.png");
+  }
+  .startmenu{
+    background: url("../../assets/img/startsmnormal.png");
+    width: 76px;
+    height: 61px;
+  }
+  .startmenutoggled{
+    background: url("../../assets/img/startsmclick.png");
+    width: 76px;
+    height: 61px;
+  }
+}
+@media only screen and (max-width: 481px)  {
+  .startlight{
+    width: 20%;
+  }
+
 }
