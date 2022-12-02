@@ -1,8 +1,8 @@
 
-<div id="keret">
+<div id="keret" (click)="click()">
   <app-window
     style="height: 100%">
   </app-window>
 
-  <app-navbar class="nav"></app-navbar>
+  <app-navbar [data]="clickVal" class="nav"></app-navbar>
 </div>

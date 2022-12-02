@@ -18,7 +18,34 @@ export class AppstatusService {
   public currentMessage = this.messageSource.asObservable();
 
   changeMessage(message:AppstatusInterface) {
-
+    this.data = message
     this.messageSource.next(message)
+  }
+  toggleOther(v:number){
+    if (v==1){
+      !this.data.folder.tray?this.focus=2:
+        !this.data.calculator.tray?this.focus=3:
+          !this.data.notepad.tray?this.focus=4:this.focus=0
+      console.log(this.focus)
+    }
+    if (v==2){
+      !this.data.internet.tray?this.focus=1:
+        !this.data.calculator.tray?this.focus=3:
+          !this.data.notepad.tray?this.focus=4:this.focus=0
+      console.log(this.focus)
+    }
+    if (v==3){
+      !this.data.internet.tray?this.focus=1:
+        !this.data.folder.tray?this.focus=2:
+          !this.data.notepad.tray?this.focus=4:this.focus=0
+      console.log(this.focus)
+    }
+    if (v==4){
+      !this.data.internet.tray?this.focus=1:
+        !this.data.folder.tray?this.focus=2:
+          !this.data.calculator.tray?this.focus=3:this.focus=0
+      console.log(this.focus)
+    }
+
   }
 }

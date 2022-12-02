@@ -10,6 +10,7 @@ import {ResizeEvent} from "angular-resizable-element";
 export class NotepadComponent {
   constructor(public dataService : AppstatusService,) {
   }
+  transVal:DOMMatrix = new WebKitCSSMatrix();
 
   kocka: {'height':number,'width':number,'top':number,'bottom':number,'left':number,'right':number} = {height:300,width:340,top:14,bottom:0,left:14,right:0,};
   fullToggle = true;
@@ -28,17 +29,24 @@ export class NotepadComponent {
   }
 
   fullScreen() {
+    !this.fullToggle?this.transVal = new WebKitCSSMatrix(getComputedStyle(this.rect?.nativeElement).transform):''
+
     this.fullToggle = !this.fullToggle;
+    this.dataService.focus = 4
   }
 
   tray() {
     this.dataService.data.notepad.tray = true;
     this.dataService.changeMessage(this.dataService.data)
+    this.dataService.toggleOther(4)
+
   }
 
   close() {
     this.dataService.data.notepad.closed = true;
     this.dataService.changeMessage(this.dataService.data)
+    this.dataService.toggleOther(4)
+
   }
 
   validate(event: ResizeEvent): boolean {

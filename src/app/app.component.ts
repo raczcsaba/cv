@@ -10,4 +10,10 @@ import {CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem} from '@
 export class AppComponent {
   title = 'cv';
 
+  clickVal = false
+
+  click() {
+    this.clickVal = !this.clickVal
+
+  }
 }

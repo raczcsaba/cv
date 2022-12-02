@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChildren} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild, ViewChildren} from '@angular/core';
 import { AppstatusService } from '../appstatus.service'
 
 
@@ -12,8 +12,14 @@ import { AppstatusService } from '../appstatus.service'
 export class WindowComponent implements OnInit {
 
   constructor(public dataService : AppstatusService) { }
+  @ViewChild('desktop') size?: ElementRef;
 
+  vertAlign = true
   ngOnInit(): void {
+    setTimeout(() => {
+      this.onResize(this.size?.nativeElement.offsetHeight)
+
+    },0)
 
   }
 
@@ -46,6 +52,16 @@ export class WindowComponent implements OnInit {
         this.dataService.changeMessage(this.dataService.data)
         return
     }
+
+  }
+
+  onResize(offsetHeight: number) {
+    if (offsetHeight<300){
+      this.vertAlign = false
+    }else {
+      this.vertAlign = true
+    }
+
 
   }
 }

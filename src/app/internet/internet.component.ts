@@ -10,12 +10,13 @@ import {ResizeEvent} from "angular-resizable-element";
 export class InternetComponent {
   constructor(public dataService : AppstatusService,) {
   }
+  @ViewChild('rect') rect?: ElementRef;
 
   kocka: {'height':number,'width':number,'top':number,'bottom':number,'left':number,'right':number} = {height:300,width:340,top:14,bottom:0,left:14,right:0,};
   fullToggle = true;
+  transVal:DOMMatrix = new WebKitCSSMatrix();
   @Input() height?: number
   @Input() width?: number
-  @ViewChild('rect') rect?: ElementRef;
 
   onResizeEnd($event: ResizeEvent) {
     this.kocka.width = ($event.rectangle.width??400);
@@ -28,20 +29,27 @@ export class InternetComponent {
   }
 
   fullScreen() {
+    !this.fullToggle?this.transVal = new WebKitCSSMatrix(getComputedStyle(this.rect?.nativeElement).transform):''
     this.fullToggle = !this.fullToggle;
+    this.dataService.focus = 1
+    console.log("whut")
   }
 
   tray() {
     this.dataService.data.internet.tray = true;
     this.dataService.changeMessage(this.dataService.data)
+    this.dataService.toggleOther(1)
   }
 
   close() {
     this.dataService.data.internet.closed = true;
     this.dataService.changeMessage(this.dataService.data)
+    this.dataService.toggleOther(1)
+
   }
 
   validate(event: ResizeEvent): boolean {
+
     //border
       //transform coords
     let transx

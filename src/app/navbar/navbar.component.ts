@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import { AppstatusService } from '../appstatus.service'
 import {AppstatusInterface} from "../appstatusInterface";
 
@@ -18,9 +18,10 @@ export class NavbarComponent implements OnInit {
     }, 100);
   }
 
+  @Input('data') dat?:boolean;
   @ViewChild('nav') nav?: ElementRef;
 
-  toggleStart = false;
+  toggleStart = true;
 
   maxShow = 4
   page = 1
@@ -45,32 +46,86 @@ export class NavbarComponent implements OnInit {
     })
   }
 
+  ngOnChanges() {
+    this.toggleStart = false;
+  }
+
   ngAfterViewChecked(){
   }
 
   starToggle() {
-    this.toggleStart = !this.toggleStart;
+    if (!this.toggleStart){
+      setTimeout(()=>{
+        this.toggleStart = !this.toggleStart;
+
+      },0)
+    }
   }
 
+
   toggleTrayIe() {
-    this.dataService.focus = 1
-    this.data.internet.tray = !this.data.internet.tray
-    this.dataService.changeMessage(this.data)
+    this.data.internet.closed = false
+    if(this.dataService.focus == 1){
+      this.data.internet.tray=true
+      this.dataService.changeMessage(this.data)
+
+      this.dataService.toggleOther(1)
+    }else{
+      this.dataService.focus = 1
+      this.data.internet.tray=false
+      this.dataService.changeMessage(this.data)
+
+    }
   }
   toggleTrayFile() {
-    this.dataService.focus = 2
-    this.data.folder.tray = !this.data.folder.tray
-    this.dataService.changeMessage(this.data)
+    this.data.folder.closed = false
+
+    if(this.dataService.focus == 2){
+      this.data.folder.tray=true
+      this.dataService.changeMessage(this.data)
+
+      this.dataService.toggleOther(2)
+    }else{
+      this.data.folder.tray=false
+      this.dataService.focus = 2
+
+      this.dataService.changeMessage(this.data)
+
+    }
   }
   toggleTrayCalc() {
-    this.dataService.focus = 3
-    this.data.calculator.tray = !this.data.calculator.tray
-    this.dataService.changeMessage(this.data)
+    this.data.calculator.closed = false
+
+    if(this.dataService.focus == 3){
+      this.data.calculator.tray=true
+      this.dataService.changeMessage(this.data)
+
+      this.dataService.toggleOther(3)
+
+    }else{
+      this.data.calculator.tray=false
+      this.dataService.focus = 3
+
+      this.dataService.changeMessage(this.data)
+
+    }
   }
   toggleTrayNote() {
-    this.dataService.focus = 4
-    this.data.notepad.tray = !this.data.notepad.tray
-    this.dataService.changeMessage(this.data)
+    this.data.notepad.closed = false
+
+    if(this.dataService.focus == 4){
+      this.data.notepad.tray=true
+      this.dataService.changeMessage(this.data)
+
+      this.dataService.toggleOther(4)
+
+    }else{
+      this.data.notepad.tray=false
+      this.dataService.focus = 4
+
+      this.dataService.changeMessage(this.data)
+
+    }
   }
 
   onResize(width: number) {
@@ -128,11 +183,14 @@ export class NavbarComponent implements OnInit {
       this.showApp = []
       this.showApp.push(this.activeApp[3])
     }
-    console.log(this.showApp)
-    if (this.showApp.length == 0){
+    if (this.showApp.length == 0 && this.activeApp.length > 0){
       console.log("történik nyugi")
       this.page--;
       this.filterApps()
     }
+  }
+
+  shutDown() {
+    //implementálásra vár
   }
 }

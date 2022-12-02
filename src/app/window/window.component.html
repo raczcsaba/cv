@@ -1,17 +1,19 @@
-<div class="example-boundary" #desktop>
+<div class="example-boundary"
+     #desktop
+     (window:resize)="onResize(desktop.offsetHeight)">
   <button (dblclick)="double(1)" class="example-box" cdkDragBoundary=".example-boundary" cdkDrag>
     <img src="../../assets/img/ieicon.ico"/>
     <p class="icontext">Internet</p>
   </button>
-  <button (dblclick)="double(2)" class="example-box" style="top: 76px" cdkDragBoundary=".example-boundary" cdkDrag>
+  <button (dblclick)="double(2)" class="example-box" [style]="(vertAlign?'top':'left') + ': 76px'" cdkDragBoundary=".example-boundary" cdkDrag>
     <img src="../../assets/img/mapap.png"/>
     <p class="icontext">File Manager</p>
   </button>
-  <button (dblclick)="double(3)" class="example-box" style="top: 152px" cdkDragBoundary=".example-boundary" cdkDrag>
+  <button (dblclick)="double(3)" class="example-box" [style]="(vertAlign?'top':'left') + ': 152px'" cdkDragBoundary=".example-boundary" cdkDrag>
     <img src="../../assets/img/calc.png"/>
     <p class="icontext">Calculator</p>
   </button>
-  <button (dblclick)="double(4)" class="example-box" style="top: 228px" cdkDragBoundary=".example-boundary" cdkDrag>
+  <button (dblclick)="double(4)" class="example-box" [style]="(vertAlign?'top':'left') + ': 228px'" cdkDragBoundary=".example-boundary" cdkDrag>
     <img src="../../assets/img/note.png"/>
     <p class="icontext">NotePad</p>
   </button>

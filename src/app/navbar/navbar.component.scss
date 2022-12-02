@@ -25,6 +25,84 @@
 .start{
   position: fixed;
   bottom: 107px;
+  z-index: 3;
+  max-height: 459px;
+}
+.startbg{
+  max-height: 459px;
+  height: auto;
+  position: static;
+}
+.startbgsm{
+  max-height: 187px;
+  height: auto;
+  display: none;
+  position: static;
+}
+.container{
+  position: fixed;
+  bottom: 133px;
+  height: 374px;
+  left: 20px;
+}
+.right{
+  left: 186px;
+
+}
+.item{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  background: none;
+  border: #fd4140 0px;
+}
+.item:hover p{
+  background-color: rgba(17, 3, 255, 0.4);
+}
+.mid{
+  margin: 95px 0;
+}
+.bot{
+  margin-top: 115px;
+}
+.itemPic{
+  height: 30px;
+  margin-right: 5px;
+}
+.item p {
+  text-align: start;
+}
+@media only screen and (max-height: 579px)  {
+  .startbg{
+    display: none;
+  }
+  .startbgsm{
+    display: block;
+  }
+  .container{
+    height: 100px;
+    bottom: 126px;
+  }
+  .itemPic{
+    height: 26px;
+  }
+  .item p {
+    font-size: smaller;
+    margin: 0px;
+  }
+  .item{
+    margin-bottom: 10px;
+  }
+  .top{
+    margin: 0px;
+  }
+  .mid{
+    margin: 10px 0;
+  }
+  .bot{
+    margin-top: 13px;
+  }
 }
 .startlight{
   width: 10%;
@@ -108,13 +186,13 @@
   .startlight{
     width: 15%;
   }
-  .startmenu:hover{
-    background: url("../../assets/img/startsmactive.png");
-  }
   .startmenu{
     background: url("../../assets/img/startsmnormal.png");
     width: 76px;
     height: 61px;
+  }
+  .startmenu:hover{
+    background: url("../../assets/img/startsmactive.png");
   }
   .startmenutoggled{
     background: url("../../assets/img/startsmclick.png");

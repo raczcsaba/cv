@@ -1,19 +1,46 @@
-<img *ngIf="toggleStart" class="start" src="../../assets/img/startmenu.png">
+<div *ngIf="toggleStart" class="start" >
+  <img class="startbg" src="../../assets/img/startmenu.png">
+  <img class="startbgsm" src="../../assets/img/startmenusm.png">
+  <div class="container">
+    <button (click)="toggleTrayIe()" class="item">
+      <img class="itemPic" src="../../assets/img/ieicon.ico"/>
+      <p><b>Internet</b><br>Internet Explorer</p>
+    </button>
+    <button (click)="toggleTrayCalc()" class="item">
+      <img class="itemPic" src="../../assets/img/calc.png"/>
+      <p><b>Calculator</b></p>
+    </button>
+  </div>
+  <div class="container right">
+    <button (click)="toggleTrayFile()" class="item top">
+      <img class="itemPic" src="../../assets/img/mapap.png"/>
+      <p><b>My Files</b><br>File Explorer</p>
+    </button>
+    <button (click)="toggleTrayNote()" class="item mid">
+      <img class="itemPic" src="../../assets/img/note.png"/>
+      <p><b>NotePad</b><br>Text Editor</p>
+    </button>
+    <button class="item bot">
+      <img (click)="shutDown()" class="itemPic" src="../../assets/img/shutdown.png"/>
+      <p><b>Shutdown</b></p>
+    </button>
+  </div>
+</div>
 <div #nav (window:resize)="onResize(nav.offsetWidth)" class="nav">
   <button (click)="starToggle()" #start [ngClass]="toggleStart?'startmenutoggled':'startmenu'"></button>
-  <button *ngIf="!data.internet.closed && showApp.includes('internet')" (click)="toggleTrayIe()" class="app" [ngClass]="data.internet.tray?'opened':'ontray'">
+  <button *ngIf="!data.internet.closed && showApp.includes('internet')" (click)="toggleTrayIe()" class="app" [ngClass]="dataService.focus==1?'opened':'ontray'">
     <img class="navkep" src="../../assets/img/ieicon.ico"/>
     <p class="navtext">Internet Explorer</p>
   </button>
-  <button *ngIf="!data.folder.closed && showApp.includes('folder')" (click)="toggleTrayFile()" class="app" [ngClass]="data.folder.tray?'opened':'ontray'">
+  <button *ngIf="!data.folder.closed && showApp.includes('folder')" (click)="toggleTrayFile()" class="app" [ngClass]="dataService.focus==2?'opened':'ontray'">
     <img class="navkep" src="../../assets/img/mapap.png"/>
     <p class="navtext">File Manager</p>
   </button>
-  <button *ngIf="!data.calculator.closed && showApp.includes('calc')" (click)="toggleTrayCalc()" class="app" [ngClass]="data.calculator.tray?'opened':'ontray'">
+  <button *ngIf="!data.calculator.closed && showApp.includes('calc')" (click)="toggleTrayCalc()" class="app" [ngClass]="dataService.focus==3?'opened':'ontray'">
     <img class="navkep" src="../../assets/img/calc.png"/>
     <p class="navtext">Calculator</p>
   </button>
-  <button *ngIf="!data.notepad.closed && showApp.includes('notepad')" (click)="toggleTrayNote()" class="app" [ngClass]="data.notepad.tray?'opened':'ontray'">
+  <button *ngIf="!data.notepad.closed && showApp.includes('notepad')" (click)="toggleTrayNote()" class="app" [ngClass]="dataService.focus==4?'opened':'ontray'">
     <img class="navkep" src="../../assets/img/note.png"/>
     <p class="navtext">NotePad</p>
   </button>

@@ -3,7 +3,7 @@
      cdkDragBoundary=".example-boundary"
      cdkDrag
      mwlResizable
-     [ngClass]="fullToggle?'notrans':''"
+     [style.transform]="fullToggle?'translate3d(0px, 0px, 0px)!important':'translate3d('+transVal.e+'px, '+transVal.f+'px, 0px)'"
      [ngClass]="dataService.focus==4?'focus':''"
 
      [style.height]="!fullToggle?kocka.height+'px':height+'px'"
@@ -16,26 +16,28 @@
      (resizeEnd)="onResizeEnd($event)"
      [validateResize]="validate.bind(this)"
      #rect>
-  <div
-    class="resize-handle-top"
-    mwlResizeHandle
-    [resizeEdges]="{ top: true }"
-  ></div>
-  <div
-    class="resize-handle-left"
-    mwlResizeHandle
-    [resizeEdges]="{ left: true }"
-  ></div>
-  <div
-    class="resize-handle-right"
-    mwlResizeHandle
-    [resizeEdges]="{ right: true }"
-  ></div>
-  <div
-    class="resize-handle-bottom"
-    mwlResizeHandle
-    [resizeEdges]="{ bottom: true }"
-  ></div>
+  <span *ngIf="!fullToggle">
+    <div
+      class="resize-handle-top"
+      mwlResizeHandle
+      [resizeEdges]="{ top: true }"
+    ></div>
+    <div
+      class="resize-handle-left"
+      mwlResizeHandle
+      [resizeEdges]="{ left: true }"
+    ></div>
+    <div
+      class="resize-handle-right"
+      mwlResizeHandle
+      [resizeEdges]="{ right: true }"
+    ></div>
+    <div
+      class="resize-handle-bottom"
+      mwlResizeHandle
+      [resizeEdges]="{ bottom: true }"
+    ></div>
+  </span>
   <div class="example-handle" cdkDragHandle>
     <div class="title">
       <img class="navbutt" src="../../assets/img/note.png"/>
