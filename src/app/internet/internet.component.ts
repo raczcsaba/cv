@@ -17,8 +17,10 @@ export class InternetComponent{
   kocka: {'height':number,'width':number,'top':number,'bottom':number,'left':number,'right':number} = {height:300,width:340,top:14,bottom:0,left:14,right:0,};
   fullToggle = true;
   transVal:DOMMatrix = new WebKitCSSMatrix();
-  @Input() height?: number
-  @Input() width?: number
+  @Input() height: number = 0
+  @Input() width: number = 0
+  browserHeight = this.height-155;
+  sizing = false;
 
 
 
@@ -29,14 +31,25 @@ export class InternetComponent{
     this.kocka.bottom = $event.rectangle.bottom??0;
     this.kocka.left = $event.rectangle.left??80;
     this.kocka.right = $event.rectangle.right??0;
+    this.sizing = false;
 
   }
 
   fullScreen() {
-    !this.fullToggle?this.transVal = new WebKitCSSMatrix(getComputedStyle(this.rect?.nativeElement).transform):''
     this.fullToggle = !this.fullToggle;
+
+    if(this.fullToggle){
+      //this.transVal = new WebKitCSSMatrix(getComputedStyle(this.rect?.nativeElement).transform)
+      this.browserHeight = this.height - 155
+    }else {
+      setTimeout(() => {
+        this.browserHeight = this.rect?.nativeElement.offsetHeight -155
+
+      },0)
+      console.log("whut")
+
+    }
     this.dataService.focus = 1
-    console.log("whut")
   }
 
   tray() {
@@ -66,6 +79,7 @@ export class InternetComponent{
     this.width = this.width??0
     this.height = this.height??0
 
+
       //sides maximális méretprobléma
     if (transx + event.rectangle.right - 13 > this.width){
       return false
@@ -82,7 +96,7 @@ export class InternetComponent{
 
     //min max size check
     const minwidth: number = 332;
-    const minheight: number = 100;
+    const minheight: number = 200;
     if (
       event.rectangle.width &&
       event.rectangle.height &&
@@ -91,15 +105,26 @@ export class InternetComponent{
     ) {
       return false;
     }
+    if (event.rectangle.height != null) {
+      this.browserHeight = event.rectangle.height-155
+      console.log(this.browserHeight)
+    }
     return true;
   }
   focus() {
-    console.log(this.dataService.focus)
-
     this.dataService.focus = 1
+    this.browserHeight = this.rect?.nativeElement.offsetHeight -155
   }
 
   urlChanged(v:string) {
     console.log(v)
+  }
+
+  rick(offsetWidth: number, offsetHeight: number) {
+    if (offsetWidth>700 && offsetHeight >400){
+      return true;
+    }else {
+      return false
+    }
   }
 }

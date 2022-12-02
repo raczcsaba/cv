@@ -13,6 +13,7 @@ import { FolderComponent } from './folder/folder.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { NotepadComponent } from './notepad/notepad.component';
 import {MatIconModule} from "@angular/material/icon";
+import {NgRickRollModule} from "ng-rick-roll";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {MatIconModule} from "@angular/material/icon";
         BrowserAnimationsModule,
         DragDropModule,
         ResizableModule,
-        MatIconModule
+        MatIconModule,
+        NgRickRollModule
     ],
   providers: [],
   bootstrap: [AppComponent]

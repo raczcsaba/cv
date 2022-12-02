@@ -41,7 +41,8 @@
 .navbutt{
   height: 58px;
   width: 58px;
-  background-size: cover;
+  background-color: rgba(0,0,0,0);
+  background-size: contain;
   border: #cccccc 0 solid;
 }
 button.navbutt:hover{
@@ -49,13 +50,13 @@ button.navbutt:hover{
   background-blend-mode: lighten;
 }
 .min{
-  background-image: url("../../assets/img/minimize.jpg");
+  background-image: url("../../assets/img/minimize.png");
 }
 .max{
-  background-image: url("../../assets/img/fullscreen.jpg");
+  background-image: url("../../assets/img/fullscreen.png");
 }
 .close{
-  background-image: url("../../assets/img/close.jpg");
+  background-image: url("../../assets/img/close.png");
 }
 .title{
   height: 58px;
@@ -72,7 +73,7 @@ button.navbutt:hover{
   bottom:0px;
   left:0px;
   right:0px;
-  background-color: #fd4140;
+  background-color: #cccccc;
   border: solid 3px #1a4dde;
   color: #121621;
 }
@@ -121,9 +122,35 @@ mwlResizable {
   z-index: 2;
 }
 .browser{
+  margin-top: 62px;
+  margin-bottom: auto;
   width: 100%;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   align-content: center;
+  padding: 30px;
+  overflow: hidden;
+
 }
+.url{
+  height: 40px;
+  max-width: 600px;
+  font-size: 20px;
+  border-radius: 10px;
+}
+.nonet{
+  display: flex;
+  padding: 10px ;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+.nonetinner{
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-content: flex-start;
+  align-items: flex-start;
+}
+

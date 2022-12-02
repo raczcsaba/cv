@@ -17,6 +17,7 @@
      #rect>
   <span *ngIf="!fullToggle">
     <div
+      (mousedown)="sizing=true"
       class="resize-handle-top"
       mwlResizeHandle
       [resizeEdges]="{ top: true }"
@@ -32,6 +33,7 @@
       [resizeEdges]="{ right: true }"
     ></div>
     <div
+      (mousedown)="sizing=true"
       class="resize-handle-bottom"
       mwlResizeHandle
       [resizeEdges]="{ bottom: true }"
@@ -44,12 +46,24 @@
     </div>
     <div>
       <button (click)="tray()" class="navbutt min"></button>
-      <button (click)="fullScreen()" class="navbutt max"></button>
+      <button (click)="fullScreen()" class="navbutt max" [style.background-image]="fullToggle?'url(../../assets/img/maximized.png)':'url(../../assets/img/fullscreen.png)'"></button>
       <button (click)="close()" class="navbutt close"></button>
     </div>
   </div>
-  <div class="browser">
-    <input #urlInput (input)="urlChanged(urlInput.value)" type="text">
-
+  <div #browser [style.height]="browserHeight+'px'" *ngIf="!sizing" class="browser">
+    <input #urlInput (input)="urlChanged(urlInput.value)" class="url" [defaultValue]="'raczcsaba.tech'" type="text">
+    <ng-rick-roll style="margin: 30px auto" *ngIf="urlInput.value=='rickroll'" [showVideo]="rick(browser.offsetWidth, browser.offsetHeight)"></ng-rick-roll>
+    <div class="nonet" *ngIf="urlInput.value != 'rickroll' && urlInput.value != 'raczcsaba.tech'">
+      <img style="max-height: 60px; width: auto" src="../../assets/img/nonet.png">
+      <div class="nonetinner">
+        <h1>Internet Explorer cannot display the webpage</h1>
+        <h3>What you can try:</h3>
+        <ul style="text-align: start">
+          <li>You are not connected to the Internet. Check your Internet connection</li>
+          <li>Retype the address.</li>
+          <li>Go back to the previous page.</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
