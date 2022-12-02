@@ -48,4 +48,8 @@
       <button (click)="close()" class="navbutt close"></button>
     </div>
   </div>
+  <div class="browser">
+    <input #urlInput (input)="urlChanged(urlInput.value)" type="text">
+
+  </div>
 </div>

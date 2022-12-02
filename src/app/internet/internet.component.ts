@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {AppstatusService} from "../appstatus.service";
 import {ResizeEvent} from "angular-resizable-element";
 
@@ -7,9 +7,11 @@ import {ResizeEvent} from "angular-resizable-element";
   templateUrl: './internet.component.html',
   styleUrls: ['./internet.component.scss']
 })
-export class InternetComponent {
-  constructor(public dataService : AppstatusService,) {
+export class InternetComponent{
+
+  constructor(public dataService : AppstatusService) {
   }
+
   @ViewChild('rect') rect?: ElementRef;
 
   kocka: {'height':number,'width':number,'top':number,'bottom':number,'left':number,'right':number} = {height:300,width:340,top:14,bottom:0,left:14,right:0,};
@@ -17,6 +19,8 @@ export class InternetComponent {
   transVal:DOMMatrix = new WebKitCSSMatrix();
   @Input() height?: number
   @Input() width?: number
+
+
 
   onResizeEnd($event: ResizeEvent) {
     this.kocka.width = ($event.rectangle.width??400);
@@ -93,5 +97,9 @@ export class InternetComponent {
     console.log(this.dataService.focus)
 
     this.dataService.focus = 1
+  }
+
+  urlChanged(v:string) {
+    console.log(v)
   }
 }
