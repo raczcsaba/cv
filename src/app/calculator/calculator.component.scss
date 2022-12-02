@@ -44,7 +44,8 @@
 .navbutt{
   height: 58px;
   width: 58px;
-  background-size: cover;
+  background-color: rgba(0,0,0,0);
+  background-size: contain;
   border: #cccccc 0 solid;
 }
 button.navbutt:hover{
@@ -52,13 +53,13 @@ button.navbutt:hover{
   background-blend-mode: lighten;
 }
 .min{
-  background-image: url("../../assets/img/minimize.jpg");
+  background-image: url("../../assets/img/minimize.png");
 }
 .max{
-  background-image: url("../../assets/img/fullscreen.jpg");
+  background-image: url("../../assets/img/fullscreen.png");
 }
 .close{
-  background-image: url("../../assets/img/close.jpg");
+  background-image: url("../../assets/img/close.png");
 }
 .title{
   height: 58px;

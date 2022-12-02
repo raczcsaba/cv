@@ -2,21 +2,21 @@
   <img class="startbg" src="../../assets/img/startmenu.png">
   <img class="startbgsm" src="../../assets/img/startmenusm.png">
   <div class="container">
-    <button (click)="toggleTrayIe()" class="item">
+    <button (click)="data.internet.tray?toggleTrayIe():dataService.focus=1" class="item">
       <img class="itemPic" src="../../assets/img/ieicon.ico"/>
       <p><b>Internet</b><br>Internet Explorer</p>
     </button>
-    <button (click)="toggleTrayCalc()" class="item">
+    <button (click)="data.calculator.tray?toggleTrayCalc():dataService.focus=3" class="item">
       <img class="itemPic" src="../../assets/img/calc.png"/>
       <p><b>Calculator</b></p>
     </button>
   </div>
   <div class="container right">
-    <button (click)="toggleTrayFile()" class="item top">
+    <button (click)="data.folder.tray?toggleTrayFile():dataService.focus=2" class="item top">
       <img class="itemPic" src="../../assets/img/mapap.png"/>
       <p><b>My Files</b><br>File Explorer</p>
     </button>
-    <button (click)="toggleTrayNote()" class="item mid">
+    <button (click)="data.notepad.tray?toggleTrayNote():dataService.focus=4" class="item mid">
       <img class="itemPic" src="../../assets/img/note.png"/>
       <p><b>NotePad</b><br>Text Editor</p>
     </button>

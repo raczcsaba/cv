@@ -3,9 +3,8 @@
      cdkDragBoundary=".example-boundary"
      cdkDrag
      mwlResizable
-     [style.transform]="fullToggle?'translate3d(0px, 0px, 0px)!important':'translate3d('+transVal.e+'px, '+transVal.f+'px, 0px)'"
-     [ngClass]="dataService.focus==4?'focus':''"
-
+     [ngClass]="fullToggle?'notrans':''"
+     [style.z-index]="dataService.focus==4?'2':'1'"
      [style.height]="!fullToggle?kocka.height+'px':height+'px'"
      [style.width]="!fullToggle?kocka.width+'px':width+'px'"
      [style.top]="!fullToggle?kocka.top+'px':'12px'"
@@ -45,7 +44,7 @@
     </div>
     <div>
       <button (click)="tray()" class="navbutt min"></button>
-      <button (click)="fullScreen()" class="navbutt max"></button>
+      <button (click)="fullScreen()" class="navbutt max " [style.background-image]="fullToggle?'url(../../assets/img/maximized.png)':'url(../../assets/img/fullscreen.png)'"></button>
       <button (click)="close()" class="navbutt close"></button>
     </div>
   </div>

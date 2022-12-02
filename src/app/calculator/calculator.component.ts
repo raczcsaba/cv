@@ -10,7 +10,6 @@ import {ResizeEvent} from "angular-resizable-element";
 export class CalculatorComponent {
   constructor(public dataService : AppstatusService,) {
   }
-  transVal:DOMMatrix = new WebKitCSSMatrix();
 
   kocka: {'height':number,'width':number,'top':number,'bottom':number,'left':number,'right':number} = {height:300,width:340,top:14,bottom:0,left:14,right:0,};
   fullToggle = true;
@@ -29,8 +28,6 @@ export class CalculatorComponent {
   }
 
   fullScreen() {
-    !this.fullToggle?this.transVal = new WebKitCSSMatrix(getComputedStyle(this.rect?.nativeElement).transform):''
-
     this.fullToggle = !this.fullToggle;
     this.dataService.focus = 3
   }
@@ -44,6 +41,7 @@ export class CalculatorComponent {
 
   close() {
     this.dataService.data.calculator.closed = true;
+    this.dataService.data.calculator.tray = true;
     this.dataService.changeMessage(this.dataService.data)
     this.dataService.toggleOther(3)
 
@@ -90,8 +88,6 @@ export class CalculatorComponent {
     return true;
   }
   focus() {
-    console.log(this.dataService.focus)
-
     this.dataService.focus = 3
   }
 }

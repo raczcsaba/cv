@@ -3,8 +3,8 @@
      cdkDragBoundary=".example-boundary"
      cdkDrag
      mwlResizable
-     [style.transform]="fullToggle?'translate3d(0px, 0px, 0px)!important':'translate3d('+transVal.e+'px, '+transVal.f+'px, 0px)'"
-     [ngClass]="dataService.focus==1?'focus':''"
+     [ngClass]="fullToggle?'notrans':''"
+     [style.z-index]="dataService.focus==1?'2':'1'"
      [style.height]="!fullToggle?kocka.height+'px':height+'px'"
      [style.width]="!fullToggle?kocka.width+'px':width+'px'"
      [style.top]="!fullToggle?kocka.top+'px':'12px'"
@@ -50,7 +50,7 @@
       <button (click)="close()" class="navbutt close"></button>
     </div>
   </div>
-  <div #browser [style.height]="browserHeight+'px'" *ngIf="!sizing" class="browser">
+  <div #browser [style.height]="browserHeight+'px'" [style.display]="sizing?'none':''" class="browser">
     <input #urlInput (input)="urlChanged(urlInput.value)" class="url" [defaultValue]="'raczcsaba.tech'" type="text">
     <ng-rick-roll style="margin: 30px auto" *ngIf="urlInput.value=='rickroll'" [showVideo]="rick(browser.offsetWidth, browser.offsetHeight)"></ng-rick-roll>
     <div class="nonet" *ngIf="urlInput.value != 'rickroll' && urlInput.value != 'raczcsaba.tech'">

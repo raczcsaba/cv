@@ -121,6 +121,9 @@ mwlResizable {
 .focus{
   z-index: 2;
 }
+.notrans{
+  transform: translate3d(0px, 0px, 0px)!important;
+}
 .browser{
   margin-top: 62px;
   margin-bottom: auto;

@@ -16,7 +16,6 @@ export class InternetComponent{
 
   kocka: {'height':number,'width':number,'top':number,'bottom':number,'left':number,'right':number} = {height:300,width:340,top:14,bottom:0,left:14,right:0,};
   fullToggle = true;
-  transVal:DOMMatrix = new WebKitCSSMatrix();
   @Input() height: number = 0
   @Input() width: number = 0
   browserHeight = this.height-155;
@@ -37,17 +36,12 @@ export class InternetComponent{
 
   fullScreen() {
     this.fullToggle = !this.fullToggle;
-
     if(this.fullToggle){
-      //this.transVal = new WebKitCSSMatrix(getComputedStyle(this.rect?.nativeElement).transform)
       this.browserHeight = this.height - 155
     }else {
       setTimeout(() => {
         this.browserHeight = this.rect?.nativeElement.offsetHeight -155
-
       },0)
-      console.log("whut")
-
     }
     this.dataService.focus = 1
   }
@@ -60,9 +54,9 @@ export class InternetComponent{
 
   close() {
     this.dataService.data.internet.closed = true;
+    this.dataService.data.internet.tray = true;
     this.dataService.changeMessage(this.dataService.data)
     this.dataService.toggleOther(1)
-
   }
 
   validate(event: ResizeEvent): boolean {
