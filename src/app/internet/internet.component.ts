@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {AppstatusService} from "../appstatus.service";
 import {ResizeEvent} from "angular-resizable-element";
 
@@ -7,9 +7,9 @@ import {ResizeEvent} from "angular-resizable-element";
   templateUrl: './internet.component.html',
   styleUrls: ['./internet.component.scss']
 })
-export class InternetComponent{
+export class InternetComponent implements OnInit{
 
-  constructor(public dataService : AppstatusService) {
+  constructor(public dataService : AppstatusService, ) {
   }
 
   @ViewChild('rect') rect?: ElementRef;
@@ -18,10 +18,32 @@ export class InternetComponent{
   fullToggle = true;
   @Input() height: number = 0
   @Input() width: number = 0
-  browserHeight = this.height-155;
-  sizing = false;
+  subValue = 90
+  browserHeight = this.height-this.subValue;
+  urlValue = 'raczcsaba.tech'
+  title = true;
+  school = [{
+    title:'52-481-02 (OKJ) Irodai Informatikus',
+    year:'2021',
+    description:'Kiskunfélegyházi Szent Benedek PG Két \n Tanítási Nyelvű Technikum és Kollégium',
+    place:'Kiskunfélegyháza Kossuth utca 24.'
+  },{
+    title:'3142/9 FEOR számú számítógépes rendszerkarbantartó',
+    year:'2021',
+    description:'Kiskunfélegyházi Szent Benedek PG Két \n Tanítási Nyelvű Technikum és Kollégium',
+    place:'Kiskunfélegyháza Kossuth utca 24.'
+  },{
+    title:'Két tanítási nyelvű érettségi',
+    year:'2016 - 2021',
+    description:'Kiskunfélegyházi Szent Benedek PG Két \n Tanítási Nyelvű Technikum és Kollégium',
+    place:'Kiskunfélegyháza Kossuth utca 24.'
+  }]
 
-
+  ngOnInit() {
+    setTimeout(() => {
+      this.browserHeight = this.height-this.subValue;
+    },0)
+  }
 
   onResizeEnd($event: ResizeEvent) {
     this.kocka.width = ($event.rectangle.width??400);
@@ -30,17 +52,19 @@ export class InternetComponent{
     this.kocka.bottom = $event.rectangle.bottom??0;
     this.kocka.left = $event.rectangle.left??80;
     this.kocka.right = $event.rectangle.right??0;
-    this.sizing = false;
-
   }
 
   fullScreen() {
     this.fullToggle = !this.fullToggle;
     if(this.fullToggle){
-      this.browserHeight = this.height - 155
+      this.browserHeight = this.height - this.subValue
+      this.title = this.width > 1035
+
     }else {
       setTimeout(() => {
-        this.browserHeight = this.rect?.nativeElement.offsetHeight -155
+        this.browserHeight = this.rect?.nativeElement.offsetHeight -this.subValue
+        this.title = this.rect?.nativeElement.offsetWidth > 1035
+
       },0)
     }
     this.dataService.focus = 1
@@ -100,18 +124,16 @@ export class InternetComponent{
       return false;
     }
     if (event.rectangle.height != null) {
-      this.browserHeight = event.rectangle.height-155
+      this.browserHeight = event.rectangle.height-this.subValue
       console.log(this.browserHeight)
+    }
+    if (event.rectangle.width != null) {
+      this.title = event.rectangle.width > 1035
     }
     return true;
   }
   focus() {
     this.dataService.focus = 1
-    this.browserHeight = this.rect?.nativeElement.offsetHeight -155
-  }
-
-  urlChanged(v:string) {
-    console.log(v)
   }
 
   rick(offsetWidth: number, offsetHeight: number) {

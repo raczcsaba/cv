@@ -14,6 +14,8 @@ import { CalculatorComponent } from './calculator/calculator.component';
 import { NotepadComponent } from './notepad/notepad.component';
 import {MatIconModule} from "@angular/material/icon";
 import {NgRickRollModule} from "ng-rick-roll";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -25,15 +27,17 @@ import {NgRickRollModule} from "ng-rick-roll";
     CalculatorComponent,
     NotepadComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        DragDropModule,
-        ResizableModule,
-        MatIconModule,
-        NgRickRollModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    DragDropModule,
+    ResizableModule,
+    MatIconModule,
+    NgRickRollModule,
+    MatProgressBarModule,
+    MatCardModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

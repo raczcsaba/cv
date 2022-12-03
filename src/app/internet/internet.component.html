@@ -17,7 +17,6 @@
      #rect>
   <span *ngIf="!fullToggle">
     <div
-      (mousedown)="sizing=true"
       class="resize-handle-top"
       mwlResizeHandle
       [resizeEdges]="{ top: true }"
@@ -33,7 +32,6 @@
       [resizeEdges]="{ right: true }"
     ></div>
     <div
-      (mousedown)="sizing=true"
       class="resize-handle-bottom"
       mwlResizeHandle
       [resizeEdges]="{ bottom: true }"
@@ -42,7 +40,7 @@
   <div class="example-handle" cdkDragHandle>
     <div class="title">
       <img class="navbutt" src="../../assets/img/ieicon.ico"/>
-      <p>Web browser</p>
+      <p>{{!title?(urlValue=='rickroll'?'Not Rickroll':urlValue=='raczcsaba.tech'?'CV':' Error :-('):'Web Browser'}}</p>
     </div>
     <div>
       <button (click)="tray()" class="navbutt min"></button>
@@ -50,10 +48,21 @@
       <button (click)="close()" class="navbutt close"></button>
     </div>
   </div>
-  <div #browser [style.height]="browserHeight+'px'" [style.display]="sizing?'none':''" class="browser">
-    <input #urlInput (input)="urlChanged(urlInput.value)" class="url" [defaultValue]="'raczcsaba.tech'" type="text">
-    <ng-rick-roll style="margin: 30px auto" *ngIf="urlInput.value=='rickroll'" [showVideo]="rick(browser.offsetWidth, browser.offsetHeight)"></ng-rick-roll>
-    <div class="nonet" *ngIf="urlInput.value != 'rickroll' && urlInput.value != 'raczcsaba.tech'">
+  <div #browser [style.height]="browserHeight+'px'" class="browser">
+    <div class="searchArea">
+      <input #urlInput (keydown.enter)="urlValue = urlInput.value" class="url" [defaultValue]="'raczcsaba.tech'" type="text">
+      <button (click)="urlValue=urlInput.value" class="searchBtn"><mat-icon>search</mat-icon></button>
+      <h1 class="webTittle hideable"
+          *ngIf="(urlValue == 'rickroll' || urlValue == 'raczcsaba.tech') && title">{{urlValue=='rickroll'?'Not Rickroll':'Rácz Csaba Önéletrajza'}}
+      </h1>
+    </div>
+    <ng-rick-roll style="margin: 30px auto"
+                  *ngIf="urlValue=='rickroll'"
+                  [showVideo]="rick(browser.offsetWidth, browser.offsetHeight)"
+                  class="hideable">
+    </ng-rick-roll>
+    <div class="nonet hideable"
+         *ngIf="urlValue != 'rickroll' && urlValue != 'raczcsaba.tech'">
       <img style="max-height: 60px; width: auto" src="../../assets/img/nonet.png">
       <div class="nonetinner">
         <h1>Internet Explorer cannot display the webpage</h1>
@@ -63,6 +72,53 @@
           <li>Retype the address.</li>
           <li>Go back to the previous page.</li>
         </ul>
+      </div>
+    </div>
+    <div *ngIf="urlValue=='raczcsaba.tech'" class="cv hideable">
+      <img class="meImg" src="../../assets/img/me.jpg">
+      <div>
+        <h1>Adataim:</h1>
+        <ul class="adatok">
+          <li>racz.csaba2001@gmail.com</li>
+          <li>+36/20 264 3332</li>
+          <li>Kiskunmajsa, 6120</li>
+          <li>2001. 02. 12.</li>
+          <li>Magyar Állampolgár</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Nyelvi Ismeretek</h2>
+        <div class="nyelvcont">
+          <div class="nyelv">
+            <h3>Angol:</h3>
+            <mat-progress-bar mode="determinate" value="70"></mat-progress-bar>
+            <h3>C1 vizsga</h3>
+          </div>
+          <div class="nyelv">
+            <h3>Magyar:</h3>
+            <mat-progress-bar mode="determinate" value="80"></mat-progress-bar>
+            <h3>Anyanyelv</h3>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h1>Tanulmányok:</h1>
+        <div class="schoolcont">
+          <mat-card *ngFor="let data of school" class="mycard">
+            <mat-card-content>
+              <mat-card-title>{{data.title}}</mat-card-title>
+              <div class="cardcont">
+                <img style="max-width: 100px; width: auto" src="../../assets/img/pg.png">
+                <div style="text-align: start; margin: 0 10px">
+                  <p class="carddescrip" [innerText]="data.description">
+                  </p>
+                  <h3><mat-icon> place</mat-icon> {{data.place}}</h3>
+                  <h3><mat-icon>date_range</mat-icon> {{data.year}}</h3>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
       </div>
     </div>
   </div>
