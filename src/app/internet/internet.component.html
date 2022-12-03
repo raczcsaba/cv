@@ -1,4 +1,4 @@
-<div class="example-box rectangle"
+<div #window class="example-box rectangle"
      (mousedown)="focus()"
      cdkDragBoundary=".example-boundary"
      cdkDrag
@@ -48,7 +48,7 @@
       <button (click)="close()" class="navbutt close"></button>
     </div>
   </div>
-  <div #browser [style.height]="browserHeight+'px'" class="browser">
+  <div #browser [style.height]="window.offsetHeight-85+'px'" class="browser">
     <div class="searchArea">
       <input #urlInput (keydown.enter)="urlValue = urlInput.value" class="url" [defaultValue]="'raczcsaba.tech'" type="text">
       <button (click)="urlValue=urlInput.value" class="searchBtn"><mat-icon>search</mat-icon></button>

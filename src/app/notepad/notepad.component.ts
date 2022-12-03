@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {AppstatusService} from "../appstatus.service";
 import {ResizeEvent} from "angular-resizable-element";
 
@@ -7,15 +7,56 @@ import {ResizeEvent} from "angular-resizable-element";
   templateUrl: './notepad.component.html',
   styleUrls: ['./notepad.component.scss']
 })
-export class NotepadComponent {
+export class NotepadComponent implements OnInit{
   constructor(public dataService : AppstatusService,) {
   }
 
-  kocka: {'height':number,'width':number,'top':number,'bottom':number,'left':number,'right':number} = {height:300,width:340,top:14,bottom:0,left:14,right:0,};
-  fullToggle = true;
+  kocka: {'height':number,'width':number,'top':number,'bottom':number,'left':number,'right':number} = {height:700,width:420,top:14,bottom:0,left:14,right:0,};
+  fullToggle = false;
   @Input() height?: number
   @Input() width?: number
   @ViewChild('rect') rect?: ElementRef;
+  mytext =
+    "import { IT Ismeretek } from '@myknowledge/core';\n" +
+    "\n" +
+    "\n" +
+    "@Component({\n" +
+    "  selector: 'app-root',\n" +
+    "  templateUrl: './app.component.html',\n" +
+    "  styleUrls: ['./app.component.scss']\n" +
+    "})\n" +
+    "\n" +
+    "export class Rácz Csaba {\n" +
+    "  \n" +
+    "  title = 'Önéletrajz';\n" +
+    "  \n" +
+    "  Szakmai_tudás: It Ismeretek = {\n" +
+    "    Verziókövetés: 'Github',\n" +
+    "    KeretRendszerek: [\n" +
+    "      'Angular',\n" +
+    "      '.Net 6'\n" +
+    "    ],\n" +
+    "    CSS: [\n" +
+    "      'SCSS',\n" +
+    "      'SASS'\n" +
+    "    ],\n" +
+    "    BackEnd: 'Strapi CMS'\n" +
+    "  }\n" +
+    "  \n" +
+    "  Soft Skillek: string = [\n" +
+    "\t'Csapatmunka',\n" +
+    "\t'Kreatív gondolkodás',\n" +
+    "\t'Probléma megoldás',\n" +
+    "\t'Precíz munkavégzés'\n" +
+    "  ]\n" +
+    "}\n"
+
+  ngOnInit() {
+    setTimeout(() => {
+      this.kocka.height = (this.height??0)<710?200:700
+      this.kocka.width = (this.width??0)<450?340:420
+    },0)
+  }
 
   onResizeEnd($event: ResizeEvent) {
     this.kocka.width = ($event.rectangle.width??400);

@@ -1,4 +1,4 @@
-<div class="example-box rectangle"
+<div #window class="example-box rectangle"
      (mousedown)="focus()"
      cdkDragBoundary=".example-boundary"
      cdkDrag
@@ -47,5 +47,14 @@
       <button (click)="fullScreen()" class="navbutt max " [style.background-image]="fullToggle?'url(../../assets/img/maximized.png)':'url(../../assets/img/fullscreen.png)'"></button>
       <button (click)="close()" class="navbutt close"></button>
     </div>
+  </div>
+  <div class="secondmenu">
+    <button class="menubutt" mat-button [matMenuTriggerFor]="menu">File</button>
+    <mat-menu #menu="matMenu">
+      <button (click)="close()" mat-menu-item>Exit</button>
+    </mat-menu>
+  </div>
+  <div #textbox [style.height]="window.offsetHeight-126 + 'px'" class="textbox">
+      <textarea>{{mytext}}</textarea>
   </div>
 </div>
