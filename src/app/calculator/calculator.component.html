@@ -1,4 +1,4 @@
-<div class="example-box rectangle"
+<div #window class="example-box rectangle"
      (mousedown)="focus()"
      cdkDragBoundary=".example-boundary"
      cdkDrag
@@ -47,5 +47,38 @@
       <button (click)="fullScreen()" class="navbutt max" [style.background-image]="fullToggle?'url(../../assets/img/maximized.png)':'url(../../assets/img/fullscreen.png)'"></button>
       <button (click)="close()" class="navbutt close"></button>
     </div>
+  </div>
+  <div #calc [style.height]="window.offsetHeight-85 + 'px'" class="calc">
+    <table id="mycalc">
+      <tr>
+        <th><input class="sum" #first type="number" (change)="changeFirst(first.value)" [value]="firstNum"></th>
+        <th>{{operator}}</th>
+        <th colspan="2"><input #second class="sum" type="number" (change)="changeSecond(second.value)" [value]="SecondNum"></th>
+      </tr>
+      <tr>
+        <td><button (click)="number('7')">7</button></td>
+        <td><button (click)="number('8')">8</button></td>
+        <td><button (click)="number('9')">9</button></td>
+        <td><button (click)="mathEvent('/')">/</button></td>
+      </tr>
+      <tr>
+        <td><button (click)="number('4')">4</button></td>
+        <td><button (click)="number('5')">5</button></td>
+        <td><button (click)="number('6')">6</button></td>
+        <td><button (click)="mathEvent('*')">*</button></td>
+      </tr>
+      <tr>
+        <td><button (click)="number('1')">1</button></td>
+        <td><button (click)="number('2')">2</button></td>
+        <td><button (click)="number('3')">3</button></td>
+        <td><button (click)="mathEvent('-')">-</button></td>
+      </tr>
+      <tr>
+        <td><button (click)="restat()">CE</button></td>
+        <td><button (click)="number('0')">0</button></td>
+        <td><button (click)="mathEvent('?')">=</button></td>
+        <td><button (click)="mathEvent('+')">+</button></td>
+      </tr>
+    </table>
   </div>
 </div>

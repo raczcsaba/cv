@@ -1,6 +1,7 @@
 import {Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {AppstatusService} from "../appstatus.service";
 import {ResizeEvent} from "angular-resizable-element";
+import * as math from "mathjs";
 
 @Component({
   selector: 'app-calculator',
@@ -12,11 +13,14 @@ export class CalculatorComponent {
   }
 
   kocka: {'height':number,'width':number,'top':number,'bottom':number,'left':number,'right':number} = {height:300,width:340,top:14,bottom:0,left:14,right:0,};
-  fullToggle = true;
+  fullToggle = false;
   @Input() height?: number
   @Input() width?: number
   @ViewChild('rect') rect?: ElementRef;
-  
+  firstNum = 0;
+  SecondNum = 0;
+  operator = '?'
+
   ngOnChanges(){
     if (this.height && this.width){
       if (this.height<this.kocka.height){
@@ -102,5 +106,41 @@ export class CalculatorComponent {
   }
   focus() {
     this.dataService.focus = 3
+  }
+
+  changeFirst(value: string) {
+    this.firstNum = Number(value)
+  }
+
+  changeSecond(value: string) {
+    this.SecondNum = Number(value)
+  }
+
+  number(n: string) {
+    this.SecondNum = Number(String(this.SecondNum) + n);
+    console.log(this.SecondNum)
+  }
+
+  mathEvent(s: string) {
+    if (this.firstNum!=0){
+      this.firstNum = math.evaluate(this.firstNum + "" + this.operator + "" + this.SecondNum)
+      this.SecondNum = 0
+      this.operator = s
+      if (s=='?'){
+        this.SecondNum = this.firstNum;
+        this.firstNum = 0
+      }
+    }
+    else {
+      this.firstNum = this.SecondNum
+      this.SecondNum = 0
+      this.operator = s
+    }
+  }
+
+  restat() {
+    this.operator = '?'
+    this.firstNum = 0
+    this.SecondNum = 0
   }
 }
