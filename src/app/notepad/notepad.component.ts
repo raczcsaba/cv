@@ -7,8 +7,12 @@ import {ResizeEvent} from "angular-resizable-element";
   templateUrl: './notepad.component.html',
   styleUrls: ['./notepad.component.scss']
 })
+
+
 export class NotepadComponent implements OnInit{
+
   constructor(public dataService : AppstatusService,) {
+
   }
 
   kocka: {'height':number,'width':number,'top':number,'bottom':number,'left':number,'right':number} = {height:700,width:420,top:14,bottom:0,left:14,right:0,};
@@ -16,6 +20,7 @@ export class NotepadComponent implements OnInit{
   @Input() height?: number
   @Input() width?: number
   @ViewChild('rect') rect?: ElementRef;
+
   mytext =
     "import { IT Ismeretek } from '@myknowledge/core';\n" +
     "\n" +
@@ -56,6 +61,20 @@ export class NotepadComponent implements OnInit{
       this.kocka.height = (this.height??0)<710?200:700
       this.kocka.width = (this.width??0)<450?340:420
     },0)
+  }
+
+  ngOnChanges(){
+    if (this.height && this.width){
+      if (this.height<this.kocka.height){
+        this.kocka.height = this.height - 10
+      }
+      if (this.width<this.kocka.width){
+        this.kocka.width = this.width - 10
+      }
+      if (this.height<140 || this.width<332){
+        this.close()
+      }
+    }
   }
 
   onResizeEnd($event: ResizeEvent) {
@@ -117,7 +136,7 @@ export class NotepadComponent implements OnInit{
 
     //min max size check
     const minwidth: number = 332;
-    const minheight: number = 100;
+    const minheight: number = 120;
     if (
       event.rectangle.width &&
       event.rectangle.height &&

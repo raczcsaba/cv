@@ -16,7 +16,20 @@ export class CalculatorComponent {
   @Input() height?: number
   @Input() width?: number
   @ViewChild('rect') rect?: ElementRef;
-
+  
+  ngOnChanges(){
+    if (this.height && this.width){
+      if (this.height<this.kocka.height){
+        this.kocka.height = this.height - 10
+      }
+      if (this.width<this.kocka.width){
+        this.kocka.width = this.width - 10
+      }
+      if (this.height<140 || this.width<332){
+        this.close()
+      }
+    }
+  }
   onResizeEnd($event: ResizeEvent) {
     this.kocka.width = ($event.rectangle.width??400);
     this.kocka.height = ($event.rectangle.height??300);
