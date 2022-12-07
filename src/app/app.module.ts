@@ -18,6 +18,7 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatCardModule} from "@angular/material/card";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatMenuModule} from "@angular/material/menu";
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {MatMenuModule} from "@angular/material/menu";
     InternetComponent,
     FolderComponent,
     CalculatorComponent,
-    NotepadComponent
+    NotepadComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

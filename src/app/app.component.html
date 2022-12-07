@@ -1,8 +1,16 @@
 
 <div id="keret" (click)="click()">
   <app-window
-    style="height: 100%">
+    style="height: 100%"
+    *ngIf="!loading">
   </app-window>
-
-  <app-navbar [data]="clickVal" class="nav"></app-navbar>
+  <app-navbar
+    [data]="clickVal"
+    class="nav"
+    *ngIf="!loading">
+  </app-navbar>
+  <app-loading
+    *ngIf="loading"
+    class="loading">
+  </app-loading>
 </div>

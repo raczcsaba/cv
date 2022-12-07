@@ -191,6 +191,6 @@ export class NavbarComponent implements OnInit {
   }
 
   shutDown() {
-    //implementálásra vár
+    this.dataService.changeLoading(true,false)
   }
 }

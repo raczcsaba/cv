@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild, ViewChildren} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AppstatusService } from '../appstatus.service'
 
 

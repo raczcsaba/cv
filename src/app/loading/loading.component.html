@@ -1,0 +1,16 @@
+<div #login class="login"
+  [style.background-image]="state?'url(../../assets/img/welcome.png)':'none'"
+  *ngIf="load.turnOn">
+  <div class="img" >
+    <img *ngIf="!state" [height]="login.offsetHeight-400" src="../../assets/img/xploading.gif">
+  </div>
+  <h1 *ngIf="state">WELCOME</h1>
+</div>
+<div #logoff class="login"
+  [style.background-image]="!state?'url(../../assets/img/welcome.png)':'none'"
+  *ngIf="!load.turnOn">
+  <div class="img" >
+    <img *ngIf="!state" [height]="logoff.offsetHeight-600" src="../../assets/img/xplogo.png">
+  </div>
+  <h1 *ngIf="!state">Windows is shutting down...</h1>
+</div>
