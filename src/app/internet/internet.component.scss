@@ -269,3 +269,12 @@ mwlResizable {
   color: orange;
 
 }
+@media only screen and (max-width: 497px) {
+  .adataim{
+    margin: 0px;
+    max-width: 79vw;
+    position: relative;
+    left: -20px;
+    word-break: break-word;
+  }
+}

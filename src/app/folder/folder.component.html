@@ -1,4 +1,4 @@
-<div class="example-box rectangle"
+<div #window class="example-box rectangle"
      (mousedown)="focus()"
      cdkDragBoundary=".example-boundary"
      cdkDrag
@@ -48,4 +48,40 @@
       <button (click)="close()" class="navbutt close"></button>
     </div>
   </div>
-</div>
+  <div #folder [style.height]="window.offsetHeight-67 + 'px'" class="folder">
+    <div *ngIf="window.offsetWidth>500" class="sidenav">
+      <div class="navgroup">
+        <div class="navtittle">
+          <h3>Directories</h3>
+        </div>
+        <button (click)="myComp()">
+          <img src="../../assets/img/mycomp.png" width="32px">
+          <p>My Computer</p>
+        </button>
+        <button (click)="docu()">
+          <img src="../../assets/img/mapap.png" width="32px">
+          <p>Documents</p>
+        </button>
+      </div>
+    </div>
+    <div *ngIf="!me" style="display: flex; flex-direction: column; align-items: flex-start;">
+      <button (click)="history.length>0?navback():''" class="backbutt">
+        <mat-icon [style.color]="history.length>0?'rgba(0,0,0,1)':'rgba(0,0,0,0.5)'">
+          keyboard_backspace
+        </mat-icon></button>
+      <div class="folders">
+        <button class="foldview" (dblclick)="place[i]['expand']?foldnav(i):foldEvent(i)" *ngFor="let i of actual">
+          <img width="32px" style="margin-right: 15px" [src]="place[i]['img']">
+          {{place[i]['pretty']}}
+        </button>
+      </div>
+    </div>
+    <div *ngIf="me"
+         (click)="me = false"
+      style="height: 100%; width: 100%; background-color: rgba(0,0,0,0.4)">
+      <img src="../../assets/img/me.jpg"
+        style="max-height: 100%;height: auto">
+
+    </div>
+  </div>
+  </div>

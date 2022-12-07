@@ -12,12 +12,11 @@
   position: absolute;
   z-index: 1;
   box-sizing: border-box;
-  padding: 10px;
   transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
 
 }
 
-.example-box:active {
+.example-handle:active {
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
   0 8px 10px 1px rgba(0, 0, 0, 0.14),
   0 3px 14px 2px rgba(0, 0, 0, 0.12);
@@ -76,7 +75,7 @@ button.navbutt:hover{
   bottom:0px;
   left:0px;
   right:0px;
-  background-color: #fd4140;
+  background-color: #cccccc;
   border: solid 3px #1a4dde;
   color: #121621;
 }
@@ -85,8 +84,8 @@ mwlResizable {
   box-sizing: border-box; // required for the enableGhostResize option to work
 
 }
-.resize-ghost-element{
-  background-color: #3B77BC;
+.resize-ghost-element .folder{
+  display: none;
 
 }
 
@@ -124,4 +123,102 @@ mwlResizable {
 
 .focus{
   z-index: 2;
+}
+.folder{
+  margin-top: 61px;
+  margin-bottom: auto;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  overflow: hidden;
+  z-index: 0;
+  background-color: #cccccc;
+
+}
+.sidenav{
+  height: 100%;
+  max-width: 300px;
+  width: 30%;
+  margin: 0;
+  background-color: #3B77BC;
+  padding: 20px 10px;
+}
+.navgroup{
+  width: auto;
+  background-color: rgba(176, 217, 255, 0.53);
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 15px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+
+}
+.navtittle{
+  color: #1a4dde;
+  border-radius: 15px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  padding: 5px 0;
+  width: 100%;
+  height: 30px;
+  margin: 0;
+  background:
+    linear-gradient(white, transparent),
+    linear-gradient(to left, #3B77BC, transparent);
+  background-blend-mode: screen;
+
+}
+
+.navtittle h3 {
+  margin: auto;
+
+}
+.navgroup button {
+  margin: 15px;
+  width: 90%;
+  border: #1a4dde 0px;
+  background: none;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  gap: 0 20px;
+  color: #1a4dde;
+
+}
+.navgroup button:hover {
+  background-color: rgba(59, 119, 188, 0.4);
+}
+.folders{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 30px;
+  gap: 15px;
+}
+.foldview{
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-start;
+  background: none;
+  border: none;
+}
+.foldview:hover{
+  background-color: rgba(59, 119, 188, 0.4);
+
+}
+.backbutt{
+  background: none;
+  border: none;
+}
+.backbutt:hover{
+  background-color: rgba(59, 119, 188, 0.4);
 }

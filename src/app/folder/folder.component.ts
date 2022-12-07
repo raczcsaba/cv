@@ -13,6 +13,83 @@ export class FolderComponent {
 
   kocka: {'height':number,'width':number,'top':number,'bottom':number,'left':number,'right':number} = {height:300,width:340,top:14,bottom:0,left:14,right:0,};
   fullToggle = true;
+  me = false
+  //Különleges probléma, különleges megoldása :DDD
+  filesystem = {
+    expand:true,
+    img:'../../assets/img/mycomp.png',
+    pretty:'Wut',
+    MyComputer:{
+      expand:true,
+      img:'../../assets/img/mycomp.png',
+      pretty:'My Computer',
+      C:{
+        expand:true,
+        img:'../../assets/img/drive.png',
+        pretty:'Local Drive (C:)',
+        Windows:{
+          expand:false,
+          img:'../../assets/img/mapap.png',
+          pretty:'Windows'
+        },
+        ProgramFiles:{
+          expand:false,
+          img:'../../assets/img/mapap.png',
+          pretty:'Program Files'
+        },
+        Documents:{
+          expand:true,
+          img:'../../assets/img/mapap.png',
+          pretty:'Documents and Settings',
+          Guests:{
+            expand:false,
+            img:'../../assets/img/mapap.png',
+            pretty:'All Users'
+          },
+          Csabi:{
+            expand:true,
+            img:'../../assets/img/mapap.png',
+            pretty:'Csabi',
+            Pictures:{
+              expand:true,
+              img:'../../assets/img/pictures.png',
+              pretty:'Pictures',
+              me:{
+                expand:false,
+                img:'../../assets/img/me.jpg',
+                pretty:'me.jpg'
+              },
+            },
+            Music:{
+              expand:false,
+              img:'../../assets/img/music.png',
+              pretty:'Music'
+            },
+            MyWork:{
+              expand:true,
+              img:'../../assets/img/mapap.png',
+              pretty:'My Work',
+              hovirag:{
+                expand:false,
+                img:'../../assets/img/angular.png',
+                pretty:'hovirag.hu'
+              },
+              digitmatek:{
+                expand:false,
+                img:'../../assets/img/digi.gif',
+                pretty:'digitmatek.hu'
+
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  place:any = this.filesystem.MyComputer;
+  actual:string[] = Object.keys(this.filesystem.MyComputer).slice(3)
+  history:any[] = [this.filesystem]
   @Input() height?: number
   @Input() width?: number
   @ViewChild('rect') rect?: ElementRef;
@@ -25,7 +102,7 @@ export class FolderComponent {
       if (this.width<this.kocka.width){
         this.kocka.width = this.width - 10
       }
-      if (this.height<140 || this.width<332){
+      if (this.height<140 || this.width<340){
         this.close()
       }
     }
@@ -102,5 +179,57 @@ export class FolderComponent {
 
   focus() {
     this.dataService.focus = 2
+  }
+
+  foldnav(i: string) {
+    this.actual = Object.keys(this.place[i]).slice(3);
+    this.history.push(this.place);
+    this.place = this.place[i];
+  }
+
+  navback() {
+    this.place = this.history[this.history.length-1];
+    this.history.pop()
+    this.actual = Object.keys(this.place).slice(3);
+  }
+
+  foldEvent(i: string) {
+    switch (i) {
+      case 'Windows':
+        alert("No Permission");
+        return
+      case 'ProgramFiles':
+        alert("No Permission");
+        return
+      case 'Guests':
+        alert("No Permission");
+        return
+      case 'me':
+        this.me = true
+        return
+      case 'Music':
+        window.open('//youtube.com/watch?v=hC8CH0Z3L54&list=PLvJ99cyIh4bgKiDDlBYCqtrg6V5GFzN0z', "_blank")
+        return
+      case 'hovirag':
+        window.open('//hovirag.procats.hu', "_blank")
+        return
+      case 'digitmatek':
+        window.open('//digitmatek.hu', "_blank")
+        return
+    }
+    console.log('HIHI' + i)
+
+  }
+
+  myComp() {
+    this.place = this.filesystem.MyComputer;
+    this.actual = Object.keys(this.filesystem.MyComputer).slice(3)
+    this.history = [this.filesystem]
+  }
+
+  docu() {
+    this.place = this.filesystem.MyComputer.C.Documents.Csabi;
+    this.actual = Object.keys(this.place).slice(3)
+    this.history = [this.filesystem,this.filesystem.MyComputer,this.filesystem.MyComputer.C,this.filesystem.MyComputer.C.Documents]
   }
 }
